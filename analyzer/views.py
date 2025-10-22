@@ -52,18 +52,18 @@ class StringListCreateView(APIView):
         return Response(data, status=status.HTTP_200_OK)
 
     def post(self, request):
+        value = request.data.get("value")
+        if not isinstance(value, str):
+            return Response(
+                {"detail": "Invalid data type for 'value' (must be string)"},
+                status=status.HTTP_422_UNPROCESSABLE_ENTITY,
+            )
+        
         serializer = CreateAnalyzeSerializer(data=request.data)
         if not serializer.is_valid():
             return Response(
                 {"detail": "Invalid request", "errors": serializer.errors},
                 status=status.HTTP_400_BAD_REQUEST,
-            )
-
-        value = serializer.validated_data["value"]
-        if not isinstance(value, str):
-            return Response(
-                {"detail": "Invalid data type for 'value' (must be string)"},
-                status=status.HTTP_422_UNPROCESSABLE_ENTITY,
             )
 
         hash_id = compute_sha256(value)

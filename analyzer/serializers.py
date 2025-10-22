@@ -46,8 +46,10 @@ class CreateAnalyzeSerializer(serializers.Serializer):
     value = serializers.CharField()
 
     def validate_value(self, v: str) -> str:
-        if not isinstance(v, str):
-            raise serializers.ValidationError("value must be a string")
+        raw_value = self.initial_data.get("value")  # the original input, before DRF casting
+        if not isinstance(raw_value, str):
+            raise serializers.ValidationError("Invalid data type for 'value' (must be string)")
+
         # trim whitespace so " hello " == "hello"
         v = v.strip()
 

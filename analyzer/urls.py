@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import StringCreateView, StringDetailView, StringsListView, NaturalLanguageFilterView, StringListCreateView
+from .views import StringDetailView, NaturalLanguageFilterView, StringListCreateView
 
 urlpatterns = [
     path("strings/", StringListCreateView.as_view(), name="string-list-create"),

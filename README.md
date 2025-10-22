@@ -39,11 +39,11 @@ pip freeze > requirements.txt
 Main dependencies used in this project:
 
 Package	Description
-Django:	The web framework used
-Django REST Framework (DRF):	For building the RESTful API
-django-filter:	For advanced query filtering
-mysqlclient:	MySQL database connector
-python-dotenv:	To load environment variables from .env file
+1. Django:	The web framework used
+2. Django REST Framework (DRF):	For building the RESTful API
+3. django-filter:	For advanced query filtering
+4. mysqlclient:	MySQL database connector
+5. python-dotenv:	To load environment variables from .env file
 
 ### 4. Environment Variables
 Create a .env file in your project root and include:
